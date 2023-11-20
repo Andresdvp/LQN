@@ -8,7 +8,7 @@ const connectDatabase = () =>{
         useUnifiedTopology:true
     }).then(con => {
         console.log(`Base de datos conectada con el servidor: ${con.connection.host}`)
-    }).catch(con=>console.log(`Error : ${con}`))
+    }).catch(con=>console.log(`No se logro la conexion a la base de datos: ${con}`))
 }
 
-module.exports= connectDatabase;
+module.exports= connectDatabase;  
