@@ -39,7 +39,6 @@ const productosSchema=mongoose.Schema({
         type: String,
         required: [true, "Porfavor seleccione la categoria del producto"],
         //enumera la lista 
-        //clase 5 minuto 1:55:42 revisa el postman
         enum: {
             values: [
                 "Electronica",
