@@ -16,6 +16,7 @@ exports.getProducts = async (req, res, next) => {
 }
 
 
+
 //ver producto por  id
 exports.getProductsById = async (req, res, next) => {
     const product = await producto.findById(req.params.id);//variable de tipo modificable
