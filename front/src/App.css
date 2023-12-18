@@ -35,10 +35,10 @@ nav {
   background-color: #fff;
 }
 .logo {
-  height: 80px;
+  height: 110px;
 }
 
-.icon-c{
+.icon{
   color: #fff;
   font-size: 30px;
 }
@@ -60,7 +60,7 @@ nav {
 
 #login_btn,
 #view_btn {
-  background-color: #3DBB80;
+  background-color: #00b2fe;
   padding: 0.4rem 1.8rem;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -106,7 +106,7 @@ nav {
 }
 
 #view_btn {
-  background-color: #3DBB80;
+  background-color: #0091ff;
   color: white;
 }
 
@@ -140,7 +140,7 @@ footer {
   display: inline-block;
   position: relative;
   font-family: FontAwesome;
-  color: gray;
+  color:gray;
 }
 
 .rating-outer::before {

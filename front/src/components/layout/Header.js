@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react'
 import '../../App.css';
-import { BiSearchAlt2 } from "react-icons/bi"
-import { FaCartArrowDown } from "react-icons/fa6";
+import { FaSearchPlus } from "react-icons/fa";
 
+import { FaCartArrowDown } from "react-icons/fa6";
+//clase 8 min 0:20:46
 const Header = () => {
     return (
         <Fragment>
@@ -17,18 +18,19 @@ const Header = () => {
                         <input
                             type='text'
                             id='search_field'
-                            className='from-control'
-                            placeholder='Que producto buscas?' />
+                            className="form-control"
+                            placeholder='Que producto buscas?...' />
                         <div className='input-group-append'>
                             <button className='btn' id='search-btn' >
-                                <BiSearchAlt2 className="iconSearch icon-c" aria-hidden='true'/>
+                                <FaSearchPlus  className="iconSearch icon" aria-hidden='true'/>
                             </button>
                         </div>
                     </div>
                 </div>
                 <div className='col-12 col-md-3 mt-4 mt-md-0 text-center'>
-                    <button className='btn btn-primary' id='login-btn'>Inicie Sesion</button>
-                    <span id='cart' className='ml-3'><FaCartArrowDown className='icon-c' /></span>
+                    <span><button className='btn btn-primary' id='login-btn'>Inicie Sesion</button></span>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                  <i><FaCartArrowDown className='icon' /></i>
                     <span className='ml-1' id='cart_count' >2</span>
 
                 </div>
