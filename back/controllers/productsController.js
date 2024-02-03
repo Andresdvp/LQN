@@ -10,7 +10,7 @@ exports.getProducts = async (req, res, next) => {
     const productos = await producto.find();
     res.status(200).json({
         sucess: true,
-        count: productos.length,
+        cantidad: productos.length,
         productos
     })
 }
@@ -80,7 +80,7 @@ exports.deleteProduct = async (req, res, next) => {
 
 }  
 
-//clase 6 min 1:37:39
+
 
 //crear nuevo producto ver en /api/productos
 
