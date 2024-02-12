@@ -48,6 +48,7 @@ const productosSchema=mongoose.Schema({
                 "Accesorios",
                 "Snacks",
                 "Juguetes",
+                "Ropa",
             ]
         }
     },

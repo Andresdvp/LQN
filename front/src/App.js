@@ -6,7 +6,6 @@ import Home from './components/Home';
 //Router traido desde react-router-dom (no confundir con el de express)
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-//clase 10
 
 function App() {
   return (

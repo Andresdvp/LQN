@@ -139,8 +139,9 @@ footer {
 .rating-outer {
   display: inline-block;
   position: relative;
+  letter-spacing: 5px;
   font-family: FontAwesome;
-  color:gray;
+  color:yellow;
 }
 
 .rating-outer::before {
@@ -158,7 +159,7 @@ footer {
 
 .rating-inner::before {
   content: '\f005 \f005 \f005 \f005 \f005';
-  color: #1C519A;
+  color: #ffe100;
 }
 
 /* Product Details Page */
