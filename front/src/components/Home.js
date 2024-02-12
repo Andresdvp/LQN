@@ -19,7 +19,7 @@ const Home = () => {
             return alert.error(error)
         }
         dispatch(getProducts());
-       alert.info("Vienvenidos a LQN")
+       alert.info("Vienvenidos a LQN");
     }, [dispatch])
 
 
