@@ -3,9 +3,11 @@ import React from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './components/Home';
-import { ProdutDetails } from './components/products/ProdutDetails';
+import { ProdutDetails } from './components/products/ProductDetails';
+
 //Router traido desde react-router-dom (no confundir con el de express)
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+
 
 
 function App() {
