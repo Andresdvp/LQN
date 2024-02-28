@@ -9,7 +9,7 @@ import { useAlert } from 'react-alert'
 
 const Home = () => {
     //traigo los estados con useSelector vienen desde el reducer
-    const { loading, productos, error } = useSelector(state => state.products)
+    const { loading, products, error } = useSelector(state => state.products)
     const alert = useAlert();
 
 
@@ -34,7 +34,7 @@ const Home = () => {
                     <section id='productos' className='container mt-5' >
                         <div className='row'>
                             {/*productos en su map me saca un producto*/}
-                            {productos && productos.map(producto => (
+                            {products && products.map(producto => (
 
                                 //el id se llama con un piso antes _id
                                 <div key={producto._id} className='col-sm-12 col-md-6 col-lg-3 my-3'>

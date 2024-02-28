@@ -64,9 +64,9 @@ nav {
   padding: 0.4rem 1.8rem;
   font-family: Arial, Helvetica, sans-serif;
 }
-
+ 
 #cart {
-  font-size: 1rem;
+  font-size: 1rem; 
   color: #fff;
 }
 
@@ -502,9 +502,9 @@ footer {
   align-items: stretch;
   min-height: 100vh;
   font-weight: normal;
-
-  margin-top: 0;
-  margin-left: -85px;
+  
+  margin-top: 0.4px;
+  margin-left: -410px;
   height: 100%;
   left: 0;
   top: 0;
@@ -513,7 +513,7 @@ footer {
 #sidebar {
   min-width: 100%;
   max-width: 100%;
-  background: #DADFEE;
+  background: #000000;
   color: #fff;
   transition: all 0.3s;
 }
@@ -527,15 +527,16 @@ footer {
 }
 #sidebar ul.components {
   padding: 5px 0px;
-  border-bottom: 1px solid #DADFEE;
+  border-bottom: 1px solid #000000;
 }
 
 #sidebar ul li a {
   padding: 10px;
   font-size: 1.1em;
   display: block;
-  color: #1C539C;
+  color: #ffffff;
   text-decoration: none;
+  
 }
 #sidebar ul li a:hover {
   color: white;
@@ -549,7 +550,7 @@ footer {
 #sidebar ul li.active > a,
 a[aria-expanded='true'] {
   color: #fff;
-  background: #DADFEE;
+  background: #000000;
 }
 a[data-toggle='collapse'] {
   position: relative;
@@ -565,7 +566,7 @@ a[data-toggle='collapse'] {
 ul ul a {
   font-size: 1rem !important;
   padding-left: 30px !important;
-  background: #DADFEE;
+  background: #000000;
 }
 
 ul.CTAs {
@@ -642,9 +643,23 @@ ul.CTAs a {
 }*/
 
 .btn-warning{
-  background: #4C87D0;
+  background: #ebd700;
 }
 
 .btn-danger{
   background: #f90004;
+}
+
+/*Area respisive*/
+
+@media (max-width: 1068px) {
+  .sidebar-wrapper {
+   
+    
+   
+    
+    margin-top: 0.4px;
+    margin-left: -133px;
+   
+  }
 }
