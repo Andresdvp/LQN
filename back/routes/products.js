@@ -5,11 +5,11 @@ const {getProducts, newProduct, getProductsById, updateProduct, deleteProduct}=r
 const { isAuthenticatedUser,authorizeRole } = require("../middleware/auth");
 //rutas de productos 
 //Probar autenticacion
-router.route('/productos').get(isAuthenticatedUser,authorizeRole("admin","user"), getProducts);//establecer desde que ruta queremos ver el getProduct
-router.route('/producto/nuevo').post(newProduct);// ruta del nuevo producto
+router.route('/productos').get( getProducts);//establecer desde que ruta queremos ver el getProduct
+router.route('/producto/nuevo').post(isAuthenticatedUser,authorizeRole("admin"),newProduct);// ruta del nuevo producto
 router.route('/producto/:id').get(getProductsById);//ver producto por id 
-router.route('/producto/:id').put(updateProduct);//Actualizar el producto
-router.route('/producto/:id').delete(deleteProduct);//eliminar producto por id
+router.route('/producto/:id').put(isAuthenticatedUser,authorizeRole("admin"),updateProduct);//Actualizar el producto
+router.route('/producto/:id').delete(isAuthenticatedUser,authorizeRole("admin"),deleteProduct);//eliminar producto por id
 
 
 

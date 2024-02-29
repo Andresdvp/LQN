@@ -86,6 +86,13 @@ const productosSchema=mongoose.Schema({
             }
         }
     ],
+    //relacion con los usuario de 1 a muchos
+    user:{
+        type: mongoose.Schema.ObjectId,
+        ref:'User',
+        required:true
+    },
+
     fechaCreacion: {
         type: Date,
         default: Date.now
