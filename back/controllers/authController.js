@@ -30,20 +30,20 @@ exports.registroUsuario = catchAsyncErrors(async (req, res, next) => {
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     const { email, password } = req.body;
 
-    //recisar si los campos estan llenos
+    //revisar si los campos estan llenos
 
     if (!email || !password) {
         return next(new ErrorHandler("porfavor ingrese email & contraseña", 400))
     }
 
     //Revisar si esta en nuestra base de datos
-    const user = await User.findOne({ email }).select("password")
+    const user = await User.findOne({ email }).select("+password")
 
     if (!user) {
         return next(new ErrorHandler("Email o contraseña invalidos", 401))
     }
 
-    //comparar contraseñas verificat si esta bien
+    //comparar contraseñas verificar si esta bien
 
     const contrasenaOK = await user.compararPass(password);
 
@@ -140,5 +140,99 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
     await user.save();
     tokenEnviado(user,200,res)
+
+})
+
+//ver perfil de usuasios
+exports.getUserProfile= catchAsyncErrors(async(req,res,next)=>{
+    const user = await User.findById(req.user.id);
+
+    res.status(200).json({
+        success:true,
+        user
+    })
+})
+
+
+// Update Contraseña (usuario logueado)
+exports.updatePassword= catchAsyncErrors(async(req,res,next)=>{
+    const user = await User.findById(req.user.id).select("+password");
+
+
+    //Revisamos si la contraseña vieja es igual a la nueva
+    const sonIguales = await user.compararPass(req.body.oldPassword)
+
+    if (!sonIguales) {
+        return next (new ErrorHandler("la contraseña anterior no es correcta",401))
+    }
+    user.password=req.body.newPassword;
+    await user.save();
+
+    tokenEnviado(user,200,res)
+})
+
+
+// Update perfil (usuario logueado)
+
+exports.updateProfile = catchAsyncErrors(async(req,res,next)=>{
+    const nuevaData ={
+        nombre: req.body.nombre,// asi para cualquier campo
+    }
+
+    //update Avatar: pendiente
+    const user = await User.findByIdAndUpdate(req.user.id, nuevaData,{
+        new: true,
+        renValidators:true,
+        useFindAndModify: false
+    })
+
+    res.status(200).json({
+        success:true,
+        user
+
+    })
+})
+
+//Servicios controladores dobre usuarios por parte de los ADMIN
+
+//ver todos los usuarios
+exports.getAllUsers = catchAsyncErrors(async(req,res,next)=>{
+    const users = await User.find();
+    res.status(200).json({
+        success:true,
+        users
+    })
+})
+
+//ver de talles del usuario
+exports.getUserDetails = catchAsyncErrors(async(req,res,next)=>{
+    const user = await User.findById(req.params.id);
+    if (!user) {
+        return next (new ErrorHandler(`No se ha encontro ningun usuario con el id: ${req.params.id}`))
+    }
+
+    res.status(200).json({
+        success:true,
+        user
+    })
+})
+
+//Actualizar usuario (como administrador)
+exports.updateUser = catchAsyncErrors(async(req,res,next)=>{
+    const nuevaData ={
+        nombre: req.body.nombre,// asi para cualquier campo
+        email: req.body.email,
+        role: req.body.rol,
+    }
+
+    const user = await User.findByIdAndUpdate(req.params.id, nuevaData,{
+        new:true,
+        runValidators:true,
+        userFindAndModify:false
+    })
+    res.status(200).json({
+        success:true,
+        user
+    })
 
 })
