@@ -111,7 +111,7 @@ function verProductos(){
 }
 //verProductos();
  
-//ver pir id
+//ver por id
 
 function verProductosPorID(id){
     fetch('http://localhost:4000/api/producto/'+id)
