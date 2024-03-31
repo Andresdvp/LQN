@@ -1,6 +1,8 @@
 
+const { query } = require("express");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const producto = require("../models/productos");
+const APIFeatures = require("../utils/apiFeatures");
 const ErrorHandler = require("../utils/errorHandler");
 const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(url))//usurpacion del import
 
@@ -9,9 +11,33 @@ const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(u
 
 //CRUD producto
 
-//ver lista productos
+//ver lista de productos
 //req = requiere, res = respuesta, next = siguiente
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
+
+    const resPerPage = 3;
+    const productsCount = await producto.countDocuments();
+
+    const apiFeatures = new APIFeatures(producto.find(), req.query)
+        .search()
+        .filter();
+
+    let products = await apiFeatures.query;
+    let filteredProductCount= products.length;
+    apiFeatures.pagination(resPerPage);
+    //no se puede hacer una segunda modificacion entonces se usa el atributo .clone()
+    products = await apiFeatures.query.clone();
+
+    res.status(200).json({
+        sucess: true,
+        productsCount,
+        resPerPage,
+        filteredProductCount,
+        products
+    })
+
+
+
     const productos = await producto.find();
     //if para el error
     if (!productos) {
