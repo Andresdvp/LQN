@@ -32,7 +32,7 @@ nav {
 }
 
 #search_btn {
-  background-color: #fff;
+  background-color: #0055ffe7;
 }
 .logo {
   height: 110px;
@@ -54,7 +54,7 @@ nav {
 }
 
 #search_field {
-  height: 2.4rem;
+  height: 2.8rem;
   padding: 1rem;
 }
 
@@ -482,16 +482,18 @@ footer {
 
 /* Pagination */
 .page-item.active .page-link {
-  background-color: #3DBB80;
-  border-color: #3DBB80;
+  background-color: #1461fbdc;
+  border-color: #1461fbdc;
 }
 
+
 .page-link {
-  color: #3DBB80;
+  color: #0055ff;
 }
 
 .page-link:hover {
-  color: #3DBB80;
+  color: #fff;
+  background: #1461fb;
 }
 
 /* Admin Sidebar */

@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 import '../../App.css';
-import { FaSearchPlus } from "react-icons/fa";
 import { Link } from 'react-router-dom'
 import { FaCartArrowDown } from "react-icons/fa6";
+import { Search } from './Search';
 
 const Header = () => {
-    return (
+    return ( 
         <Fragment>
             <nav className='navbar row'>
                 <div className='col-12 col-md-3'>
@@ -15,18 +15,10 @@ const Header = () => {
                     </div>
                 </div>
                 <div className='col-12 col-md-6 mt-2 mt-md-0'>
-                    <div className='input-group'>
-                        <input
-                            type='text'
-                            id='search_field'
-                            className="form-control"
-                            placeholder='Que producto buscas?...' />
-                        <div className='input-group-append'>
-                            <button className='btn' id='search-btn' >
-                                <FaSearchPlus  className="iconSearch icon" aria-hidden='true'/>
-                            </button>
-                        </div>
-                    </div>
+                   {/** aqui va buscar  */}
+                   <Search/>
+
+ 
                 </div>
                 <div className='col-12 col-md-3 mt-4 mt-md-0 text-center'>
                    

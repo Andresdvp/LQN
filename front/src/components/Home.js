@@ -1,25 +1,34 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import MetaData from './layout/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../actions/productActions'
-//mejora la etiqueta (a) para navegar enttre rutas
-import { Link } from 'react-router-dom'
 import { useAlert } from 'react-alert'
-
+import Pagination from 'react-js-pagination'
+//mejora la etiqueta (a) para navegar enttre rutas
+import { Link, useParams } from 'react-router-dom'
 
 const Home = () => {
-    //traigo los estados con useSelector vienen desde el reducer
-    const { loading, products, error } = useSelector(state => state.products)
-    const alert = useAlert();
+    const params = useParams();
+    const keyword = params.keyword;
 
+    const [CurrentPage, setCurrentPage] = useState(1)
+    //traigo los estados con useSelector vienen desde el reducer
+    const { loading, products, error, resPerPage, productsCount } = useSelector(state => state.products)
+    const alert = useAlert();
+   
 
     const dispatch = useDispatch();
     useEffect(() => {
-        if(error){
+        if (error) {
             return alert.error(error)
         }
-        dispatch(getProducts());
-       }, [dispatch]) 
+        dispatch(getProducts(CurrentPage, keyword));
+    }, [dispatch, alert, error, CurrentPage, keyword])
+
+    //cabiar pagina actual
+    function setCurrentPageNo(pageNumber) {
+        setCurrentPage(pageNumber)
+    }
 
 
     return (
@@ -63,6 +72,26 @@ const Home = () => {
 
                         </div>
                     </section>
+
+                    <div className='d-flex justify-content-center mt-5'>
+
+                        <Pagination
+                            activePage={CurrentPage}
+                            itemsCountPerPage={resPerPage}
+                            totalItemsCount={productsCount}
+                            onChange={setCurrentPageNo}
+                            nextPageText={'Siguiente'}
+                            prevPageText={'Anterior'}
+                            firstPageText={'Primera'}
+                            lastPageText={'Ultima'}
+                            itemClass='page-item'
+                            linkClass='page-link'
+                        />
+
+                    </div>
+
+
+
                 </Fragment>
             )}
 

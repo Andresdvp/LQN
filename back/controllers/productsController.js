@@ -15,40 +15,30 @@ const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(u
 //req = requiere, res = respuesta, next = siguiente
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
-    const resPerPage = 3;
+    //objetos por pagina
+    const resPerPage = 2;
     const productsCount = await producto.countDocuments();
 
     const apiFeatures = new APIFeatures(producto.find(), req.query)
         .search()
         .filter();
 
-    let products = await apiFeatures.query;
-    let filteredProductCount= products.length;
+
+    let productos = await apiFeatures.query;
+    let filteredProductCount = productos.length;
     apiFeatures.pagination(resPerPage);
     //no se puede hacer una segunda modificacion entonces se usa el atributo .clone()
-    products = await apiFeatures.query.clone();
+    productos = await apiFeatures.query.clone();
 
     res.status(200).json({
         sucess: true,
         productsCount,
         resPerPage,
         filteredProductCount,
-        products
-    })
-
-
-
-    const productos = await producto.find();
-    //if para el error
-    if (!productos) {
-        return next(new ErrorHandler("Informacion no encontrada", 404))
-
-    }
-    res.status(200).json({
-        sucess: true,
-        cantidad: productos.length,
         productos
     })
+
+
 })
 
 
