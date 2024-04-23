@@ -10,11 +10,11 @@ import {
     CLEAR_ERRORS
 } from "../constants/productConstants";
 //resive lo q venga  de la ruta api/productos y lo guarda en data 
-export const getProducts=(currentPage =1,keyword='')=> async(dispatch)=>{
+export const getProducts=(currentPage =1,keyword='',precio)=> async(dispatch)=>{
     try{
         dispatch({type:ALL_PRODUCTS_REQUEST})
 
-        let link = `/api/productos?keyword=${keyword}&page=${currentPage}`
+        let link = `/api/productos?keyword=${keyword}&page=${currentPage}&precio[gte]=${precio[0]}&precio[lte]=${precio[1]}`
 
         const {data}= await axios.get(link)
 

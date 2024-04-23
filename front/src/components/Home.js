@@ -4,26 +4,36 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../actions/productActions'
 import { useAlert } from 'react-alert'
 import Pagination from 'react-js-pagination'
-//mejora la etiqueta (a) para navegar enttre rutas
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'  //mejora la etiqueta (a) para navegar enttre rutas
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css'
+
+
+
+
+
+
+
+
 
 const Home = () => {
     const params = useParams();
     const keyword = params.keyword;
+    const [precio, setPrecio] = useState([100, 100000])
 
     const [CurrentPage, setCurrentPage] = useState(1)
     //traigo los estados con useSelector vienen desde el reducer
     const { loading, products, error, resPerPage, productsCount } = useSelector(state => state.products)
     const alert = useAlert();
-   
+
 
     const dispatch = useDispatch();
     useEffect(() => {
         if (error) {
             return alert.error(error)
         }
-        dispatch(getProducts(CurrentPage, keyword));
-    }, [dispatch, alert, error, CurrentPage, keyword])
+        dispatch(getProducts(CurrentPage, keyword, precio));
+    }, [dispatch, alert, error, CurrentPage, keyword, precio])
 
     //cabiar pagina actual
     function setCurrentPageNo(pageNumber) {
@@ -42,6 +52,34 @@ const Home = () => {
 
                     <section id='productos' className='container mt-5' >
                         <div className='row'>
+
+                            
+                                <Slider
+                                    range
+                                    
+                                    className='t-slider slider-box'
+                                    marks={{
+                                        100: `$100`,
+                                        100000: `$100000`
+                                    }}
+                                    min={100}
+                                    max={100000}
+                                    defaultValue={[100, 100000]}
+                                    tipFormatter={value => `$${value}`}
+                                    tipProps={{
+                                        placement: 'top',
+                                        prefixCls: 'rc-slider-tooltip',
+                                        visible: true
+                                    }}
+                                    value={precio}
+                                    onChange={precio => setPrecio(precio)}
+                                    
+                                ></Slider>
+
+                          
+
+
+
                             {/*productos en su map me saca un producto*/}
                             {products && products.map(producto => (
 

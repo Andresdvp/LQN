@@ -9,6 +9,8 @@ import { ProdutDetails } from './components/products/ProductDetails';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Dashboard } from './components/admin/Dashboard';
 import ProductsList from './components/admin/ProductsList';
+import { Login } from './components/user/Login';
+import { Cart } from './components/cart/Cart';
 
 
 
@@ -26,6 +28,8 @@ function App() {
             <Route path='/dashboard' element={<Dashboard/>} />
             <Route path='/productsList' element={<ProductsList />} />
             <Route path='/search/:keyword' element={<Home />} />
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/carrito' element={<Cart />} />
           </Routes>
         </div>
         <Footer />
@@ -35,3 +39,4 @@ function App() {
 }
 
 export default App;
+

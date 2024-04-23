@@ -16,7 +16,7 @@ const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(u
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
     //objetos por pagina
-    const resPerPage = 2;
+    const resPerPage = 4;
     const productsCount = await producto.countDocuments();
 
     const apiFeatures = new APIFeatures(producto.find(), req.query)
@@ -175,19 +175,19 @@ exports.getProductsReviews = catchAsyncErrors(async (req, res, next) => {
 exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
     const product = await producto.findById(req.query.idProducto);
 
-    const opiniones = product.opiniones.filter(opinion =>
+    const opi = product.opiniones.filter(opinion =>
         opinion._id.toString() != req.query.idReview.toString());
 
-    const numCalificaciones = opiniones.length;
+    const numCalificaciones = opi.length;
 
-    const calificacion = product.opiniones.reduce((acc, Opinion) =>
-        Opinion.rating + acc, 0) / opiniones.length
+    const calificacion = opi.reduce((acc, Opinion) =>
+        Opinion.rating + acc, 0) / opi.length
 
 
 
 
     await producto.findByIdAndUpdate(req.query.idProducto, {
-        opiniones,
+        opi,
         calificacion,
         numCalificaciones
     }, {
