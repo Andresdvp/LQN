@@ -10,7 +10,7 @@ const reducer= combineReducers({
     //reductor 2 detalles
     productDetails: productDetailsReducer,
     //reductor 3 usuarios
-    authUser: authReducer
+    auth: authReducer
 });
 
 let intialState={};

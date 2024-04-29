@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 //clase 15 no me muestra nada
 export const ProductsList = () => {
 
-    const { loading, error, products } = useSelector(state => state.products)
+    const { loading, products, error } = useSelector(state => state.products)
     const alert = useAlert();
 
 

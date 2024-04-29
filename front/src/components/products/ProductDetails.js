@@ -6,7 +6,7 @@ import { clearErrors, getProductsDetails } from '../../actions/productActions'
 import { useAlert } from 'react-alert'
 import { Carousel } from 'react-bootstrap'
 
-//clase 13 min: 1:36:52
+
 
 export const ProdutDetails = () => {
   const { loading, product, error } = useSelector(state => state.productDetails)

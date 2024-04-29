@@ -11,6 +11,7 @@ import { Dashboard } from './components/admin/Dashboard';
 import ProductsList from './components/admin/ProductsList';
 import { Login } from './components/user/Login';
 import { Cart } from './components/cart/Cart';
+import { Register } from './components/user/Register';
 
 
 
@@ -28,10 +29,13 @@ function App() {
             <Route path='/dashboard' element={<Dashboard/>} />
             <Route path='/productsList' element={<ProductsList />} />
             <Route path='/search/:keyword' element={<Home />} />
-            <Route path='/login' element={<Login/>}/>
             <Route path='/carrito' element={<Cart />} />
+            <Route path='/register' element={<Register/>}/>
           </Routes>
         </div>
+        <Routes>
+        <Route path='/login' element={<Login/>}/>
+        </Routes>
         <Footer />
       </div>
     </Router>

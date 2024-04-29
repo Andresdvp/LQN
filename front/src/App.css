@@ -1,6 +1,10 @@
+
+
+
 html,
 body {
-  font-family: Arial, Helvetica, sans-serif;;
+  font-family: Arial, Helvetica, sans-serif;
+  ;
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -34,11 +38,12 @@ nav {
 #search_btn {
   background-color: #0055ffe7;
 }
+
 .logo {
   height: 110px;
 }
 
-.icon{
+.icon {
   color: #fff;
   font-size: 30px;
 }
@@ -49,7 +54,7 @@ nav {
   margin-left: 100px;
 }
 
-.text-trapitos-blue{
+.text-trapitos-blue {
   color: #1C539C;
 }
 
@@ -63,11 +68,11 @@ nav {
   background-color: #0c5bf8e7;
   padding: 0.4rem 1.8rem;
   font-family: Arial, Helvetica, sans-serif;
-  color:#fff;
+  color: #fff;
 }
- 
+
 #cart {
-  font-size: 1rem; 
+  font-size: 1rem;
   color: #fff;
 }
 
@@ -82,7 +87,7 @@ nav {
 
 /* Home page */
 
-.slider-box{
+.slider-box {
   width: 100%;
   margin: 0 0 50px 0;
 }
@@ -150,7 +155,7 @@ footer {
   position: relative;
   letter-spacing: 5px;
   font-family: FontAwesome;
-  color:yellow;
+  color: yellow;
 }
 
 .rating-outer::before {
@@ -223,6 +228,7 @@ footer {
   height: 80px;
   padding-left: 0;
 }
+
 .loader:after {
   content: ' ';
   display: block;
@@ -234,10 +240,12 @@ footer {
   border-color: #3DBB80 transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -316,12 +324,12 @@ footer {
 
 /* Login & Register */
 
+
+
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5rem;
-
   font-weight: 700;
 }
 
@@ -329,6 +337,86 @@ footer {
   padding: 2.5rem 3rem;
 }
 
+.log {
+  background: url('../public/img/bg-login.jpg') no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  width: 100%;
+  height: 58rem;
+  margin: 0;
+}
+
+.formulario__login {
+  margin-left: 8rem;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 500px;
+  box-shadow: 2px 2px 20px #1f2029;
+  transition: all 500ms linear;
+}
+
+.titulo_login {
+  font-size: 40px;
+  font-weight: 500;
+  /* color: #ffffffd6;*/
+}
+
+.form__group {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.form-style {
+  padding: 13px 20px;
+  padding-left: 55px;
+  height: 48px;
+  width: 100%;
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  outline: none;
+  color: #c4c3ca;
+  background-color: #1f2029;
+  border: none;
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+  margin-bottom:20px ;
+}
+.form-style:focus,
+.form-style:active {
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+}
+
+.input-icon {
+  position: absolute;
+  top: 0;
+  left: 18px;
+  height: 48px;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: left;
+  color: #ffeba7;
+  -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+
+.form__group input:focus::-webkit-input-placeholder  {
+opacity: 0;
+-webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+/******************************************/
 .wrapper form .btn {
   background-color: #3DBB80;
   border-color: #3DBB80;
@@ -513,7 +601,7 @@ footer {
   align-items: stretch;
   min-height: 100vh;
   font-weight: normal;
-  
+
   margin-top: 0.4px;
   margin-left: -410px;
   height: 100%;
@@ -521,6 +609,7 @@ footer {
   top: 0;
   z-index: 10;
 }
+
 #sidebar {
   min-width: 100%;
   max-width: 100%;
@@ -528,6 +617,7 @@ footer {
   color: #fff;
   transition: all 0.3s;
 }
+
 #sidebar.active {
   margin-left: 0px;
 }
@@ -536,6 +626,7 @@ footer {
   padding: 20px;
   background: #DADFEE;
 }
+
 #sidebar ul.components {
   padding: 5px 0px;
   border-bottom: 1px solid #000000;
@@ -547,8 +638,9 @@ footer {
   display: block;
   color: #ffffff;
   text-decoration: none;
-  
+
 }
+
 #sidebar ul li a:hover {
   color: white;
   background: #3DBB80;
@@ -558,14 +650,16 @@ footer {
   margin-right: 0.3rem;
 }
 
-#sidebar ul li.active > a,
+#sidebar ul li.active>a,
 a[aria-expanded='true'] {
   color: #fff;
   background: #000000;
 }
+
 a[data-toggle='collapse'] {
   position: relative;
 }
+
 .dropdown-toggle::after {
   display: block;
   position: absolute;
@@ -629,9 +723,9 @@ ul.CTAs a {
   padding-left: 0;
 }
 
-.navbar-brand{
+.navbar-brand {
   margin-left: 50px;
-  
+
 }
 
 .orange {
@@ -653,11 +747,11 @@ ul.CTAs a {
   background: #347556;
 }*/
 
-.btn-warning{
+.btn-warning {
   background: #ebd700;
 }
 
-.btn-danger{
+.btn-danger {
   background: #f90004;
 }
 
@@ -665,12 +759,12 @@ ul.CTAs a {
 
 @media (max-width: 1068px) {
   .sidebar-wrapper {
-   
-    
-   
-    
+
+
+
+
     margin-top: 0.4px;
     margin-left: -133px;
-   
+
   }
 }

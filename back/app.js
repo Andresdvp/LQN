@@ -2,13 +2,18 @@ const express = require("express");
 const app = express();
 const errorMiddleware = require("./middleware/erros")
 const cookieParser =require ("cookie-parser")
+const bodyParser= require("body-parser")
+const fileUpload =require("express-fileupload")
 
-
+//uso de constantes importadas
  //va a usar formato json
 app.use(express.json());
 
+app.use(bodyParser.urlencoded({extended: true}));
 //parcee las cookies de mandera global
 app.use(cookieParser());
+app.use(fileUpload());
+
 
 //importar rutas
 const productos=require("./routes/products")
