@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './components/Home';
@@ -12,11 +12,17 @@ import ProductsList from './components/admin/ProductsList';
 import { Login } from './components/user/Login';
 import { Cart } from './components/cart/Cart';
 import { Register } from './components/user/Register';
-
-
+import { loadUser } from './actions/userActions';
+import store from "./store"
+import { Profile } from './components/user/Profile';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser())
+  }, [])
+
   return (
     <Router >
       <div className="App">
@@ -24,17 +30,22 @@ function App() {
         <div className='container container-fluid'>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path='/Home' element={<Home/>}/>
-            <Route path='/producto/:id' element={<ProdutDetails/>}/>
-            <Route path='/dashboard' element={<Dashboard/>} />
+            <Route path='/Home' element={<Home />} />
+            <Route path='/producto/:id' element={<ProdutDetails />} />
             <Route path='/productsList' element={<ProductsList />} />
             <Route path='/search/:keyword' element={<Home />} />
             <Route path='/carrito' element={<Cart />} />
-            <Route path='/register' element={<Register/>}/>
+            <Route path='/register' element={<Register />} />
+            <Route path='/yo' element={<Profile />} />
+
+            {/**rutas protegidas */}
+            <Route path='/dashboard'
+             element={<ProtectedRoute isAdmin={true}><Dashboard/></ProtectedRoute>} />
+
           </Routes>
         </div>
         <Routes>
-        <Route path='/login' element={<Login/>}/>
+          <Route path='/login' element={<Login />} />
         </Routes>
         <Footer />
       </div>
