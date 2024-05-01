@@ -10,12 +10,13 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Dashboard } from './components/admin/Dashboard';
 import ProductsList from './components/admin/ProductsList';
 import { Login } from './components/user/Login';
-import { Cart } from './components/cart/Cart';
+
 import { Register } from './components/user/Register';
 import { loadUser } from './actions/userActions';
 import store from "./store"
 import { Profile } from './components/user/Profile';
 import ProtectedRoute from './routes/ProtectedRoute';
+import Cart from './components/cart/Cart';
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
             <Route path='/producto/:id' element={<ProdutDetails />} />
             <Route path='/productsList' element={<ProductsList />} />
             <Route path='/search/:keyword' element={<Home />} />
-            <Route path='/carrito' element={<Cart />} />
+            <Route path='/carrito' element={<Cart/>} />
             <Route path='/register' element={<Register />} />
             <Route path='/yo' element={<Profile />} />
 
@@ -47,7 +48,7 @@ function App() {
         <Routes>
           <Route path='/login' element={<Login />} />
         </Routes>
-        <Footer />
+        <Footer />   
       </div>
     </Router>
   );

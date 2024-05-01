@@ -10,6 +10,7 @@ import { logout } from '../../actions/userActions';
 
 
 const Header = () => {
+    const {cartItems} =useSelector (state=> state.cart);
     const alert =useAlert();
     const dispatch = useDispatch();
 
@@ -38,7 +39,7 @@ const Header = () => {
                 <div className='col-12 col-md-4 mt-4 mt-md-0 text-center'>
                     {/** boton carrito */}
                     <Link to="/carrito"><FaCartArrowDown className='icon' /></Link>
-                    <span className='ml-1' id='cart_count' >2</span>
+                    <span className='ml-1' id='cart_count' >{cartItems.length}</span>
 
                     {user ? (
                         <div className='ml-4  dropdown d-inline'>

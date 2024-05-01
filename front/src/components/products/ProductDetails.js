@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { clearErrors, getProductsDetails } from '../../actions/productActions'
 import { useAlert } from 'react-alert'
 import { Carousel } from 'react-bootstrap'
+import { addItemToCart } from '../../actions/cartActions'
 
 
 
@@ -13,7 +14,7 @@ export const ProdutDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const alert = useAlert();
-   const [quantity, setQuantity]= useState(1)
+  const [quantity, setQuantity] = useState(1)
 
 
 
@@ -26,22 +27,27 @@ export const ProdutDetails = () => {
   }, [dispatch, alert, error, id]);
 
   //aumentar y disminuir el numero de inventario
-  const increaseQty = () =>{
-    const contador =document.querySelector('.count')
-    if (contador.valueAsNumber>=product.inventario) return;
+  const increaseQty = () => {
+    const contador = document.querySelector('.count')
+    if (contador.valueAsNumber >= product.inventario) return;
 
-    const qty = contador.valueAsNumber+1;
+    const qty = contador.valueAsNumber + 1;
     setQuantity(qty)
 
   };
-  const decreaseQty = () =>{
-    const contador =document.querySelector('.count')
+  const decreaseQty = () => {
+    const contador = document.querySelector('.count')
     if (contador.valueAsNumber <= 1) return;
 
-    const qty = contador.valueAsNumber-1;
+    const qty = contador.valueAsNumber - 1;
     setQuantity(qty)
 
   };
+
+  const addToCart = () => {
+    dispatch(addItemToCart(id, quantity));
+    alert.success("Producto agregado al carrito")
+  }
 
   return (
 
@@ -74,11 +80,11 @@ export const ProdutDetails = () => {
               <hr />
               <p id='precio_producto'>Precio:  ${product.precio}</p>
               <div className='stockCounter d-inline'>
-                <span className='btn btn-danger minus'onClick={decreaseQty} >-</span>
+                <span className='btn btn-danger minus' onClick={decreaseQty} >-</span>
                 <input type='number' className='from-control count d-inline' value={quantity} readOnly></input>
                 <span className='btn btn-primary plus' onClick={increaseQty}>+</span>
               </div>
-              < button type='button' id='carrito_btn' className='btn btn-primary d-inline ml-4' disabled={product.inventario === 0}>Agregar al carrito</button>
+              < button type='button' id='carrito_btn' className='btn btn-primary d-inline ml-4' disabled={product.inventario === 0} onClick={addToCart} >Agregar al carrito</button>
               <hr />
               <p>Estado:  <span id='stock_estado' className={product.inventario > 0 ? 'greenColor' : 'redColor'}>{product.inventario > 0 ? 'En existencia' : "Agotado"}</span> </p>
               <hr />
@@ -87,7 +93,7 @@ export const ProdutDetails = () => {
               <hr />
               <p id='vendedor' >Vendido por: {product.vendedor}</p>
               <button id='btn_review' type='button' className='btn btn-primary mt-4' data-toggle="modal" data-target="#ratingModal">Deja tu opinion</button>
-                  <div className='alert alert-danger mt-5' type="alert">Inicia Sesion para dejar tu review</div>
+              <div className='alert alert-danger mt-5' type="alert">Inicia Sesion para dejar tu review</div>
 
 
               {/*Mensaje emergente del comentario*/}
