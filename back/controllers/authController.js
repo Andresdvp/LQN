@@ -4,7 +4,8 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const tokenEnviado = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
-const cloudinary = require("cloudinary")
+const cloudinary = require("cloudinary");
+const { url } = require("inspector");
 
 //registrar un nuevo usuario /api/usuario/registro
 
@@ -91,7 +92,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await user.save({ validateBeforeSave: false })
 
     //crear una url para hacer el reset de la contraseña
-    const resetUrl = `${req.protocol}://${req.get("host")}/api/resetPassword/${resetToken}`
+    const resetUrl = `${req.protocol}://${req.get("host")}/resetPassword/${resetToken}`
 
     const mensaje = `Hola \n\nTu link para restablecer una nueva contraseña es el 
     siguiente:     \n\n${resetUrl}\n\n
@@ -182,12 +183,29 @@ exports.updatePassword= catchAsyncErrors(async(req,res,next)=>{
 // Update perfil (usuario logueado)
 
 exports.updateProfile = catchAsyncErrors(async(req,res,next)=>{
-    const nuevaData ={
+    const newUserData ={
         nombre: req.body.nombre,// asi para cualquier campo
+        email: req.body.email
     }
 
-    //update Avatar: pendiente
-    const user = await User.findByIdAndUpdate(req.user.id, nuevaData,{
+    //update Avatar
+    if (req.body.avatar !=="") {
+        const user = await User.findById(req.user.id)
+        const image_id = user.avatar.public_id;
+        const res = await cloudinary.v2.uploader.destroy(image_id);
+
+        const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder:"avatars",
+            width:240,
+            crop:"scale"
+        })
+
+        newUserData.avatar={
+            public_id: result.public_id,
+            url: result.secure_url
+        }
+    }
+    const user = await User.findByIdAndUpdate(req.user.id, newUserData,{
         new: true,
         renValidators:true,
         useFindAndModify: false
